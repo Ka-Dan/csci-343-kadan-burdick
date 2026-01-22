@@ -1,0 +1,1968 @@
+{
+	"info": {
+		"_postman_id": "aa2f51eb-d780-4363-97a3-0404b870f64d",
+		"name": "Books API (Production Quality)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19374042",
+		"_collection_link": "https://interstellar-shadow-872405.postman.co/workspace/MCLA---CSCI-343-2024~4791d374-c2df-4e97-a461-52a24bf3f89c/collection/19374042-aa2f51eb-d780-4363-97a3-0404b870f64d?action=share&source=collection_link&creator=19374042"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"a@b.com\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"a@b.com\",\r\n    \"password\":\"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/auth/register",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzEyMTEzOTExLCJleHAiOjE3MTIyODY3MTF9.8RuHDUfo35mSQq_R0pjodaaRJHGtzK98Ke8XFK8KFLk; Max-Age=1; Path=/; Expires=Wed, 03 Apr 2024 03:11:52 GMT; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "174"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ae-+qgrKtwklehOrAC6UeoWm6LA1u4\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 03:11:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"email\": \"a@b.com\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzEyMTEzOTExLCJleHAiOjE3MTIyODY3MTF9.8RuHDUfo35mSQq_R0pjodaaRJHGtzK98Ke8XFK8KFLk\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Verify Token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzEyMTEzOTExLCJleHAiOjE3MTIyODY3MTF9.8RuHDUfo35mSQq_R0pjodaaRJHGtzK98Ke8XFK8KFLk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/auth/verifyToken",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"auth",
+								"verifyToken"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Verify Token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzEyMTEzOTExLCJleHAiOjE3MTIyODY3MTF9.8RuHDUfo35mSQq_R0pjodaaRJHGtzK98Ke8XFK8KFLk",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3001/auth/verifyToken",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"auth",
+										"verifyToken"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-5BmNseijuq9dutWkWRu2alwKejA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 03:13:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"email\": \"a@b.com\",\n    \"is_admin\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Log in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"a@b.com\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Log in",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"a@b.com\",\r\n    \"password\":\"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzExNDE2ODg4LCJleHAiOjE3MTE1ODk2ODh9.HgpHymH1vGWR8q1FN-uUH2wOFbyvTua9Wg-cjWwduhU; Max-Age=1000; Path=/; Expires=Tue, 26 Mar 2024 01:51:28 GMT; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "174"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ae-gn462/RAL/Unb0XCSYfKGm1eCWI\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 01:34:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 5,\n    \"email\": \"a@b.com\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzExNDE2ODg4LCJleHAiOjE3MTE1ODk2ODh9.HgpHymH1vGWR8q1FN-uUH2wOFbyvTua9Wg-cjWwduhU\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Log out",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/auth/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Log out",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/auth/logout",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-Q51XcZ4ePLV6/CUbR4RGmt8YHs8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 01:35:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successfully logged out.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Authors",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzEyMTEzOTExLCJleHAiOjE3MTIyODY3MTF9.8RuHDUfo35mSQq_R0pjodaaRJHGtzK98Ke8XFK8KFLk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/authors",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"authors"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Index",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzEyMTEzOTExLCJleHAiOjE3MTIyODY3MTF9.8RuHDUfo35mSQq_R0pjodaaRJHGtzK98Ke8XFK8KFLk",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3001/authors",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "422"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1a6-GYhd0BRsR/uOcD6GUJ4QiIB+6L0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 03:14:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"title\": \"Dr.\",\n        \"first_name\": null,\n        \"middle_name\": null,\n        \"last_name\": \"Seuss\"\n    },\n    {\n        \"id\": 2,\n        \"title\": null,\n        \"first_name\": \"Margaret\",\n        \"middle_name\": \"Wise\",\n        \"last_name\": \"Brown\"\n    },\n    {\n        \"id\": 3,\n        \"title\": null,\n        \"first_name\": \"William\",\n        \"middle_name\": null,\n        \"last_name\": \"Goldman\"\n    },\n    {\n        \"id\": 4,\n        \"title\": null,\n        \"first_name\": \"Thomas\",\n        \"middle_name\": null,\n        \"last_name\": \"Harris\"\n    },\n    {\n        \"id\": 5,\n        \"title\": null,\n        \"first_name\": \"Michael\",\n        \"middle_name\": \"G.\",\n        \"last_name\": \"Scott\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzEyMTEzOTExLCJleHAiOjE3MTIyODY3MTF9.8RuHDUfo35mSQq_R0pjodaaRJHGtzK98Ke8XFK8KFLk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/authors/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"authors",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Show",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzEyMTEzOTExLCJleHAiOjE3MTIyODY3MTF9.8RuHDUfo35mSQq_R0pjodaaRJHGtzK98Ke8XFK8KFLk",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3001/authors/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"authors",
+										"1"
+									],
+									"query": [
+										{
+											"key": "x-access-token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzEyMTEzOTExLCJleHAiOjE3MTIyODY3MTF9.8RuHDUfo35mSQq_R0pjodaaRJHGtzK98Ke8XFK8KFLk",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "79"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4f-c4/FvihpE8C/OlU66Dc75pinMFk\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 03:18:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"title\": \"Dr.\",\n    \"first_name\": null,\n    \"middle_name\": null,\n    \"last_name\": \"Seuss\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Mr\",\r\n    \"first_name\":\"Pete\",\r\n    \"middle_name\":\"Peter\",\r\n    \"last_name\":\"Peterson\"  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/authors",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"authors"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Mr\",\r\n    \"first_name\":\"Pete\",\r\n    \"middle_name\":\"Peter\",\r\n    \"last_name\":\"Peterson\"  \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/authors",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Location",
+									"value": "/authors/6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-c3EUOxv3o86c3ssZx7qaDhTHADs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 03:22:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Author created successfully.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Mr\",\r\n    \"first_name\":\"Pete\",\r\n    \"middle_name\":\"Peter\",\r\n    \"last_name\":\"Johnson\"  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/authors/6",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"authors",
+								"6"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Mr\",\r\n    \"first_name\":\"Pete\",\r\n    \"middle_name\":\"Peter\",\r\n    \"last_name\":\"Peterson\"  \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/authors",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Location",
+									"value": "/authors/6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-c3EUOxv3o86c3ssZx7qaDhTHADs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 03:22:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Author created successfully.\"\n}"
+						},
+						{
+							"name": "Update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Mr\",\r\n    \"first_name\":\"Pete\",\r\n    \"middle_name\":\"Peter\",\r\n    \"last_name\":\"Johnson\"  \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/authors/6",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"authors",
+										"6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-qZ/1SSQwUCJ+L9X0UvWfUu4ck0M\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 03:23:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Author successfully updated.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Destroy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/authors/6",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"authors",
+								"6"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Mr\",\r\n    \"first_name\":\"Pete\",\r\n    \"middle_name\":\"Peter\",\r\n    \"last_name\":\"Peterson\"  \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/authors",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Location",
+									"value": "/authors/6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-c3EUOxv3o86c3ssZx7qaDhTHADs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 03:22:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Author created successfully.\"\n}"
+						},
+						{
+							"name": "Update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Mr\",\r\n    \"first_name\":\"Pete\",\r\n    \"middle_name\":\"Peter\",\r\n    \"last_name\":\"Johnson\"  \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/authors/6",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"authors",
+										"6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-qZ/1SSQwUCJ+L9X0UvWfUu4ck0M\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 03:23:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Author successfully updated.\"\n}"
+						},
+						{
+							"name": "Destroy",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3001/authors/6",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"authors",
+										"6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-QREx1F9hu7Elk8bUz+/KAyVFAl4\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 03:24:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Author successfully deleted.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/books",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Index",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/books",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "896"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"380-kuYly+2DqPBgozfTOFY3504bOlc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 16:58:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"title\": \"The Cat in the Hat\",\n        \"author\": {\n            \"id\": 1,\n            \"title\": \"Dr.\",\n            \"first_name\": null,\n            \"middle_name\": null,\n            \"last_name\": \"Seuss\"\n        },\n        \"user\": {\n            \"id\": 2,\n            \"email\": \"steven@gmail.com\"\n        }\n    },\n    {\n        \"id\": 2,\n        \"title\": \"Goodnight Moon\",\n        \"author\": {\n            \"id\": 2,\n            \"title\": null,\n            \"first_name\": \"Margaret\",\n            \"middle_name\": \"Wise\",\n            \"last_name\": \"Brown\"\n        },\n        \"user\": {\n            \"id\": 2,\n            \"email\": \"steven@gmail.com\"\n        }\n    },\n    {\n        \"id\": 3,\n        \"title\": \"The Princess Bride\",\n        \"author\": {\n            \"id\": 3,\n            \"title\": null,\n            \"first_name\": \"William\",\n            \"middle_name\": null,\n            \"last_name\": \"Goldman\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"email\": \"michael.desanty@mcla.edu\"\n        }\n    },\n    {\n        \"id\": 4,\n        \"title\": \"The Silence of the Lambs\",\n        \"author\": {\n            \"id\": 4,\n            \"title\": null,\n            \"first_name\": \"Thomas\",\n            \"middle_name\": null,\n            \"last_name\": \"Harris\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"email\": \"michael.desanty@mcla.edu\"\n        }\n    },\n    {\n        \"id\": 5,\n        \"title\": \"Somehow I Manage\",\n        \"author\": {\n            \"id\": 5,\n            \"title\": null,\n            \"first_name\": \"Michael\",\n            \"middle_name\": \"G.\",\n            \"last_name\": \"Scott\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"email\": \"michael.desanty@mcla.edu\"\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/books/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Index",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/books",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "896"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"380-kuYly+2DqPBgozfTOFY3504bOlc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 16:58:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"title\": \"The Cat in the Hat\",\n        \"author\": {\n            \"id\": 1,\n            \"title\": \"Dr.\",\n            \"first_name\": null,\n            \"middle_name\": null,\n            \"last_name\": \"Seuss\"\n        },\n        \"user\": {\n            \"id\": 2,\n            \"email\": \"steven@gmail.com\"\n        }\n    },\n    {\n        \"id\": 2,\n        \"title\": \"Goodnight Moon\",\n        \"author\": {\n            \"id\": 2,\n            \"title\": null,\n            \"first_name\": \"Margaret\",\n            \"middle_name\": \"Wise\",\n            \"last_name\": \"Brown\"\n        },\n        \"user\": {\n            \"id\": 2,\n            \"email\": \"steven@gmail.com\"\n        }\n    },\n    {\n        \"id\": 3,\n        \"title\": \"The Princess Bride\",\n        \"author\": {\n            \"id\": 3,\n            \"title\": null,\n            \"first_name\": \"William\",\n            \"middle_name\": null,\n            \"last_name\": \"Goldman\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"email\": \"michael.desanty@mcla.edu\"\n        }\n    },\n    {\n        \"id\": 4,\n        \"title\": \"The Silence of the Lambs\",\n        \"author\": {\n            \"id\": 4,\n            \"title\": null,\n            \"first_name\": \"Thomas\",\n            \"middle_name\": null,\n            \"last_name\": \"Harris\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"email\": \"michael.desanty@mcla.edu\"\n        }\n    },\n    {\n        \"id\": 5,\n        \"title\": \"Somehow I Manage\",\n        \"author\": {\n            \"id\": 5,\n            \"title\": null,\n            \"first_name\": \"Michael\",\n            \"middle_name\": \"G.\",\n            \"last_name\": \"Scott\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"email\": \"michael.desanty@mcla.edu\"\n        }\n    }\n]"
+						},
+						{
+							"name": "Show",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/books/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"books",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "169"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a9-zi7qVQPv3H44CyL+OG1l0hCQI+g\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 16:58:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"title\": \"The Cat in the Hat\",\n    \"author\": {\n        \"id\": 1,\n        \"title\": \"Dr.\",\n        \"first_name\": null,\n        \"middle_name\": null,\n        \"last_name\": \"Seuss\"\n    },\n    \"user\": {\n        \"id\": 2,\n        \"email\": \"steven@gmail.com\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Green Eggs and Ham\",\r\n    \"author_id\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/books",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Mr\",\r\n    \"first_name\":\"Pete\",\r\n    \"middle_name\":\"Peter\",\r\n    \"last_name\":\"Peterson\"  \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/authors",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Location",
+									"value": "/authors/6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-c3EUOxv3o86c3ssZx7qaDhTHADs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 03:22:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Author created successfully.\"\n}"
+						},
+						{
+							"name": "Create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Green Eggs and Ham\",\r\n    \"author_id\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/books",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"books"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Location",
+									"value": "/books/6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-woUGhYV90oCLg3oOM0cx+91r/yY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 17:00:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book created successfully.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Greener Eggs and Ham\",\r\n    \"author_id\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/books/6",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"books",
+								"6"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Mr\",\r\n    \"first_name\":\"Pete\",\r\n    \"middle_name\":\"Peter\",\r\n    \"last_name\":\"Peterson\"  \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/authors",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Location",
+									"value": "/authors/6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-c3EUOxv3o86c3ssZx7qaDhTHADs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 03:22:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Author created successfully.\"\n}"
+						},
+						{
+							"name": "Create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Green Eggs and Ham\",\r\n    \"author_id\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/books",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"books"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Location",
+									"value": "/books/6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-woUGhYV90oCLg3oOM0cx+91r/yY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 17:00:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book created successfully.\"\n}"
+						},
+						{
+							"name": "Update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Greener Eggs and Ham\",\r\n    \"author_id\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/books/6",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"books",
+										"6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-5YdPIKI9/a39l2mNBU6iL/OGtjw\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 17:01:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book successfully updated.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Destroy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/books/6",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"books",
+								"6"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Mr\",\r\n    \"first_name\":\"Pete\",\r\n    \"middle_name\":\"Peter\",\r\n    \"last_name\":\"Peterson\"  \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/authors",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Location",
+									"value": "/authors/6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-c3EUOxv3o86c3ssZx7qaDhTHADs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 03:22:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Author created successfully.\"\n}"
+						},
+						{
+							"name": "Create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Green Eggs and Ham\",\r\n    \"author_id\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/books",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"books"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Location",
+									"value": "/books/6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-woUGhYV90oCLg3oOM0cx+91r/yY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 17:00:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book created successfully.\"\n}"
+						},
+						{
+							"name": "Update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Greener Eggs and Ham\",\r\n    \"author_id\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/books/6",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"books",
+										"6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-5YdPIKI9/a39l2mNBU6iL/OGtjw\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 17:01:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book successfully updated.\"\n}"
+						},
+						{
+							"name": "Destroy",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMTE0NTAwLCJleHAiOjE3MTIyODczMDB9.PtciGWVR4MhYbalhY0Md6RyDcBVbCNPknWE16BKR5N0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3001/books/6",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"books",
+										"6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-1pUqoycfzfMsMm2uDHXfgopfW84\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Apr 2024 17:05:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book successfully deleted.\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

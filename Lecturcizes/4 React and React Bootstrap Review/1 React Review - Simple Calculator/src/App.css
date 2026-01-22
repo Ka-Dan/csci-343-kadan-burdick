@@ -1,0 +1,21 @@
+#calculator {
+  margin-left: 10px;
+  margin-top: 20px;
+  padding: 10px;
+  width: 165px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#calculator h3 {
+  margin-top: 0px;
+}
+
+#calculator input {
+  width: 140px;
+}
+
+#calculator .results-container {
+  text-align: left;
+  margin-top: 10px;
+}

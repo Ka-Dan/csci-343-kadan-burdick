@@ -1,0 +1,15 @@
+#background {
+  background-color: #060C0C;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+#header .nav-link {
+  color: white;
+  text-decoration: none;
+}
+
+#header .nav-link.active {
+  text-decoration: underline;
+}
