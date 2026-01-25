@@ -1,0 +1,23 @@
+{
+  "name": "assignment1",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Ka-Dan/csci-343-kadan-burdick#readme",
+  "bugs": {
+    "url": "https://github.com/Ka-Dan/csci-343-kadan-burdick/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ka-Dan/csci-343-kadan-burdick.git"
+  },
+  "license": "ISC",
+  "author": "kadan Burdick",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}
