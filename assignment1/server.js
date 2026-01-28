@@ -33,7 +33,7 @@ function requestHandler(req, res) {
     case "/gradeStats":
       handleGradeStats(req, res);
       break;
-    case "rectangle":
+    case "/rectangle":
       handleRectangle(req, res);
       break;
     default:
@@ -50,12 +50,12 @@ function handleDotted(req, res) {
       throw Error("Both word 1 and word 2 are required.");
 
 
-    const word1 = query.word1;
-    const word2 = query.word2;
+    const queryWord1 = query.word1;
+    const queryWord2 = query.word2;
 
-    const dots = 30 - (word1.length + word2.length);
+    const dotsNeeded = 30 - (queryWord1.length + queryWord2.length);
 
-    const queryString = `<pre>${word1}${'.'.repeat(dots)}${word2}</pre>`;
+    const queryString = `<pre>${queryWord1}${'.'.repeat(dotsNeeded)}${queryWord2}</pre>`;
 
     writeResponse(res, 200, queryString , true);
   }
@@ -73,16 +73,16 @@ function handleFizzBuzz(req, res) {
       throw Error("Both a and b are required.");
 
 
-    const start = parseInt(query.start);
-    const end = parseInt(query.end);
+    const startingInt = parseInt(query.start);
+    const endInt = parseInt(query.end);
 
-    if (isNaN(start) || isNaN(end))
+    if (isNaN(startingInt) || isNaN(endInt))
       throw Error("Both a and b must be numbers.");
 
     let fizzBuzzString = "";
 
-    const min = Math.min(start, end);
-    const max = Math.max(start, end);
+    const min = Math.min(startingInt, endInt);
+    const max = Math.max(startingInt, endInt);
 
     for (let i = min; i <= max; i++) {
       if (i % 3 === 0) {
@@ -114,11 +114,11 @@ function handleGradeStats(req, res) {
     const query = getQuery(req);
 
     if (query.num === undefined)
-      throw Error("At least two numbers are required.");
+      throw Error("At least one number is required.");
 
-    const nums = (query.num instanceof Array ? query.num : [query.num]);
+    const queryValues = (query.num instanceof Array ? query.num : [query.num]);
 
-    const sum = nums.map((value) => {
+    const verifiedNums = queryValues.map((value) => {
       const number = parseInt(value);
 
       if (isNaN(number))
@@ -126,9 +126,13 @@ function handleGradeStats(req, res) {
 
       return number;
     })
-    .reduce((total, current) => { return total + current; }, 0);
 
-    writeResponse(res, 200, { result: sum});
+    const min = Math.min(...verifiedNums);
+    const max = Math.max(...verifiedNums);
+    const sum = verifiedNums.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    const average = sum / verifiedNums.length;
+
+    writeResponse(res, 200, { average: average, min: min, max: max});
   }
   catch (e) {
     console.log(e.message);
@@ -137,7 +141,27 @@ function handleGradeStats(req, res) {
 }
 
 function handleRectangle(req, res) {
+  try {
+    const query = getQuery(req);
 
+    if (query.length === undefined || query.width === undefined)
+      throw Error("both numbers are required.");
+
+    const rectLength = parseInt(query.length);
+    const rectWidth = parseInt(query.width);
+
+    if (isNaN(rectLength) || isNaN(rectWidth))
+      throw Error("One or more inputs aren't a number.")
+
+    const rectArea = rectLength * rectWidth;
+    const rectPerimeter = (rectLength * 2) + (rectWidth * 2);
+
+    writeResponse(res, 200, { area: rectArea, perimeter: rectPerimeter});
+  }
+  catch (e) {
+    console.log(e.message);
+    writeResponse(res, 400, { error: e.message});
+  }
 }
 
 function getQuery(req) {
@@ -146,11 +170,11 @@ function getQuery(req) {
 }
 
 function writeResponse(res, status, object, isHtml = false) {
-  res.writeHead(status, { "Content-Type": "text/html" });
-
   if (isHtml) {
+    res.writeHead(status, { "Content-Type": "text/html" });
     res.end(object);
   } else {
+    res.writeHead(status, { "Content-Type": "application/json" });
     res.end(JSON.stringify(object));
   }
 }
