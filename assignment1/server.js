@@ -113,12 +113,12 @@ function handleGradeStats(req, res) {
   try {
     const query = getQuery(req);
 
-    if (query.num === undefined)
+    if (query.grades === undefined)
       throw Error("At least one number is required.");
 
-    const queryValues = (query.num instanceof Array ? query.num : [query.num]);
+    const grades= (query.grades instanceof Array ? query.grades : [query.grades]);
 
-    const verifiedNums = queryValues.map((value) => {
+    const verifiedNums = grades.map((value) => {
       const number = parseInt(value);
 
       if (isNaN(number))
