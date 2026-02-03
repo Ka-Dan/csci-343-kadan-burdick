@@ -2,7 +2,6 @@ require("dotenv").config();
 
 const http = require("http");
 const url = require("url");
-const { diff } = require("util");
 
 const server = http.createServer(requestHandler);
 server.listen(process.env.PORT, process.env.HOST, startHandler);
@@ -19,7 +18,7 @@ function requestHandler(req, res) {
   const method = req.method;
 
   if (method !== "GET") {
-    writeResponse(res, 405, { error: `Method ${method} not allowed.`});
+    writeJsonResponse(res, 405, { error: `Method ${method} not allowed.`});
     return;
   }
 
@@ -37,7 +36,7 @@ function requestHandler(req, res) {
       handleRectangle(req, res);
       break;
     default:
-      writeResponse(res, 400, { error: `Invalid path ${path}.`});
+      writeJsonResponse(res, 400, { error: `Invalid path ${path}.`});
       break;
   }
 }
@@ -46,9 +45,7 @@ function handleDotted(req, res) {
   try {
     const query = getQuery(req);
 
-    if (query.word1 === undefined || query.word2 === undefined)
-      throw Error("Both word 1 and word 2 are required.");
-
+    validateStringQuery([query.word1, query.word2]);
 
     const queryWord1 = query.word1;
     const queryWord2 = query.word2;
@@ -57,11 +54,11 @@ function handleDotted(req, res) {
 
     const queryString = `<pre>${queryWord1}${'.'.repeat(dotsNeeded)}${queryWord2}</pre>`;
 
-    writeResponse(res, 200, queryString , true);
+    writeHtmlResponse(res, 200, queryString , true);
   }
   catch (e) {
     console.log(e.message);
-    writeResponse(res, 400, { error: e.message });
+    writeHtmlResponse(res, 400, `error: ${e.message}`);
   }
 }
 
@@ -69,15 +66,10 @@ function handleFizzBuzz(req, res) {
   try {
     const query = getQuery(req);
 
-    if (query.start === undefined || query.end === undefined)
-      throw Error("Both a and b are required.");
-
+    validateNumbersQuery([query.start, query.end]);
 
     const startingInt = parseInt(query.start);
     const endInt = parseInt(query.end);
-
-    if (isNaN(startingInt) || isNaN(endInt))
-      throw Error("Both a and b must be numbers.");
 
     let fizzBuzzString = "";
 
@@ -101,11 +93,11 @@ function handleFizzBuzz(req, res) {
     }
 
     fizzBuzzString = `<pre>${fizzBuzzString}</pre>`
-    writeResponse(res, 200, fizzBuzzString , true);
+    writeHtmlResponse(res, 200, fizzBuzzString , true);
   }
   catch (e) {
     console.log(e.message);
-    writeResponse(res, 400, { error: e.message});
+    writeHtmlResponse(res, 400, `error: ${e.message}`);
   }
 }
 
@@ -113,30 +105,25 @@ function handleGradeStats(req, res) {
   try {
     const query = getQuery(req);
 
-    if (query.grades === undefined)
-      throw Error("At least one number is required.");
+    validateNumbersQuery(query.grades);
 
-    const grades= (query.grades instanceof Array ? query.grades : [query.grades]);
+    const grades = (query.grades instanceof Array ? query.grades : [query.grades]);
 
-    const verifiedNums = grades.map((value) => {
+    const verifiedGrades = grades.map((value) => {
       const number = parseInt(value);
-
-      if (isNaN(number))
-        throw Error("All num values must be numbers.");
-
       return number;
     })
 
-    const min = Math.min(...verifiedNums);
-    const max = Math.max(...verifiedNums);
-    const sum = verifiedNums.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    const average = sum / verifiedNums.length;
+    const min = Math.min(...verifiedGrades);
+    const max = Math.max(...verifiedGrades);
+    const sum = verifiedGrades.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    const average = sum / verifiedGrades.length;
 
-    writeResponse(res, 200, { average: average, min: min, max: max});
+    writeJsonResponse(res, 200, { average: average, min: min, max: max});
   }
   catch (e) {
     console.log(e.message);
-    writeResponse(res, 400, { error: e.message});
+    writeJsonResponse(res, 400, { error: e.message});
   }
 }
 
@@ -144,23 +131,19 @@ function handleRectangle(req, res) {
   try {
     const query = getQuery(req);
 
-    if (query.length === undefined || query.width === undefined)
-      throw Error("both numbers are required.");
+    validateNumbersQuery([query.length, query.width]);
 
     const rectLength = parseInt(query.length);
     const rectWidth = parseInt(query.width);
 
-    if (isNaN(rectLength) || isNaN(rectWidth))
-      throw Error("One or more inputs aren't a number.")
-
     const rectArea = rectLength * rectWidth;
     const rectPerimeter = (rectLength * 2) + (rectWidth * 2);
 
-    writeResponse(res, 200, { area: rectArea, perimeter: rectPerimeter});
+    writeJsonResponse(res, 200, { area: rectArea, perimeter: rectPerimeter});
   }
   catch (e) {
     console.log(e.message);
-    writeResponse(res, 400, { error: e.message});
+    writeJsonResponse(res, 400, { error: e.message});
   }
 }
 
@@ -169,12 +152,29 @@ function getQuery(req) {
   return urlParts.query;
 }
 
-function writeResponse(res, status, object, isHtml = false) {
-  if (isHtml) {
-    res.writeHead(status, { "Content-Type": "text/html" });
-    res.end(object);
-  } else {
-    res.writeHead(status, { "Content-Type": "application/json" });
-    res.end(JSON.stringify(object));
+function validateStringQuery(obj) {
+  for (res in obj) {
+    if (res === undefined)
+      throw Error("One or more inputs are undefined.");
   }
+}
+
+function validateNumbersQuery(obj) {
+  for (res in obj) {
+    if (obj[res] === undefined)
+      throw Error("One or more inputs are undefined.");
+
+    if (isNaN(obj[res]))
+      throw Error("One or more inputs are not a number.");
+  }
+}
+
+function writeHtmlResponse(res, status, object) {
+  res.writeHead(status, { "Content-Type": "text/html" });
+  res.end(object);
+}
+
+function writeJsonResponse(res, status, object) {
+  res.writeHead(status, { "Content-Type": "application/json" });
+  res.end(JSON.stringify(object));
 }
