@@ -1,0 +1,27 @@
+const http = require("http");
+
+const server = http.createServer(requestHandler);
+server.listen(3000, "localhost", startHandler);
+
+function requestHandler(req, res) {
+  console.log("Handling request.");
+
+  res.writeHead(200, { "Content-Type": "text/html" });
+  res.write("<p>Good Afternoon.</p>");
+
+  /**
+   * res.end can also take a string to send the same way that .write does.
+   *
+   * This means instead of writing:
+   * res.write("<p?Have a nice day!</p>");
+   * res.end();
+   *
+   * We can simpley write:
+   */
+  res.end("<p>It is insanely code outside today. It was -4 when I left my house this morning.</p>");
+}
+
+function startHandler() {
+  const address = server.address();
+  console.log("Server listening at " + address.address + ":" + address.port);
+}
