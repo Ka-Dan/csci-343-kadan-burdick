@@ -1,0 +1,64 @@
+#background {
+  background-color: #060C0C;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+#header .nav-link {
+  color: white;
+  text-decoration: none;
+}
+
+#header .nav-link.active {
+  text-decoration: underline;
+}
+
+#header .nav-link:hover {
+  color: rgb(101, 175, 244)
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+  transition: 0.4s;
+  border-radius: 5px;
+  width: 300px;
+  height: 350px;
+  margin: 1rem;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+  transition: 0.5s;
+}
+
+.card-header {
+  padding: 10px 16px;
+  background-color: #8bb9d8b9;
+  border-bottom: 1px solid #ddd;
+  height: 125px;
+}
+
+.card-body {
+  height: 125px;
+}
+
+.card-footer {
+  height: 75px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.card-subtitle {
+  margin: 8px 0px;
+  font-style: italic;
+  font-size: 14px;
+  text-align: bottom;
+}
