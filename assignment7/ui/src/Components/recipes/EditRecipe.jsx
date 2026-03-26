@@ -7,8 +7,13 @@ import axios from "axios";
 function EditRecipe() {
   const params = useParams();
   const [alert, setAlert] = useState({ message: "", variant: "" });
-  const [recipe, setRecipe] = useState({ name: "", author: "", description: "", category: "",
-    ingredient1: "", ingredient2: "", ingredient3: "", ingredient4: "", ingredient5: "" });
+  const [recipe, setRecipe] = useState({
+    name: "",
+    description: "",
+    author_id: "",
+    category_id: "",
+    ingredients: []
+  });
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -17,25 +22,21 @@ function EditRecipe() {
 
   const fetchRecipe = () => {
     axios.get(`/api/recipes/${params.id}`)
-      .then(results => {
-        setRecipe({
-          name: results.data.name || "",
-          author: results.data.author || "",
-          description: results.data.description || "",
-          category: results.data.category || "",
-          ingredient1: results.data.ingredient1 || "",
-          ingredient2: results.data.ingredient2 || "",
-          ingredient3: results.data.ingredient3 || "",
-          ingredient4: results.data.ingredient4 || "",
-          ingredient5: results.data.ingredient5 || ""
-        });
-      })
-      .catch(error => {
-        setAlert({ message: "Failed to load results.data.", variant: "danger" });
-      })
-      .finally(() => {
-        setIsLoading(false);
+    .then(results => {
+      setRecipe({
+        name: results.data.name || "",
+        description: results.data.description || "",
+        author_id: results.data.author_id || "",
+        category_id: results.data.category_id || "",
+        ingredients: results.data.ingredients || []
       });
+    })
+    .catch(error => {
+      setAlert({ message: "Failed to load recipe data.", variant: "danger" });
+    })
+    .finally(() => {
+      setIsLoading(false);
+    });
   }
 
   return (

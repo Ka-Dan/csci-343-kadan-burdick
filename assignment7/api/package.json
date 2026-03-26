@@ -8,7 +8,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
+    "start": "nodemon ./src/server.js",
     "seed:db": "psql -U fullstack -d postgres -f ./scripts/createDB.sql"
   },
   "dependencies": {

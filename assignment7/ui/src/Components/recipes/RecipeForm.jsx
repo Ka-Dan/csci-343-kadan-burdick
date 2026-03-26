@@ -12,31 +12,37 @@ function RecipeForm({ recipe }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
-    author: "",
     description: "",
-    category: "",
-    ingredient1: "",
-    ingredient2: "",
-    ingredient3: "",
-    ingredient4: "",
-    ingredient5: ""
+    category_id: "",
+    author_id: "",
+    ingredient_ids: []
   });
 
+  const [ingredients, setIngredients] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [authors, setAuthors] = useState([]);
+
+  // Fetch Lists
   useEffect(() => {
-    if (!!recipe?.id) {
-      setFormData({
-        name: recipe.name || "",
-        author: recipe.author || "",
-        description: recipe.description || "",
-        category: recipe.category || "",
-        ingredient1: recipe.ingredient1 || "",
-        ingredient2: recipe.ingredient2 || "",
-        ingredient3: recipe.ingredient3 || "",
-        ingredient4: recipe.ingredient4 || "",
-        ingredient5: recipe.ingredient5 || ""
-      });
-    }
-  }, [recipe]);
+    axios.get("/api/ingredients").then(res => setIngredients(res.data));
+    axios.get("/api/categories").then(res => setCategories(res.data));
+    axios.get("/api/authors").then(res => setAuthors(res.data));
+  }, []);
+
+  // Runs when recipe prop arrives
+  useEffect(() => {
+  if (recipe && recipe.id) {
+    setFormData({
+      name: recipe.name || "",
+      description: recipe.description || "",
+      author_id: recipe.author_id ? recipe.author_id.toString() : "",
+      category_id: recipe.category_id ? recipe.category_id.toString() : "",
+      ingredient_ids: Array.isArray(recipe.ingredients)
+        ? recipe.ingredients.map(ing => ing.id.toString())
+        : []
+    });
+  }
+}, [recipe, ingredients]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -50,7 +56,7 @@ function RecipeForm({ recipe }) {
         navigate("/recipes", { state: { alert: { message: `Recipe successfully ${!!recipe?.id ? "updated" : "created" }.`, variant: "success" } } });
       })
       .catch(error => {
-        if (error.response?.status === 400) {
+        if (error.response?.status === 422) {
           console.log(error.response.data.errors);
           setErrors(error.response.data.errors);
         }
@@ -78,11 +84,11 @@ function RecipeForm({ recipe }) {
 
       <Form className="w-50" onSubmit={isSubmitting ? null : handleSubmit}>
         <Form.Group>
-          <Form.Label>Title</Form.Label>
+          <Form.Label>Name</Form.Label>
           <Form.Control
             type="text"
             value={formData.name}
-            placeholder="Enter title"
+            placeholder="Enter name"
             isInvalid={!!errors.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
@@ -90,21 +96,9 @@ function RecipeForm({ recipe }) {
         </Form.Group>
 
         <Form.Group className="mt-2">
-          <Form.Label>Author</Form.Label>
-          <Form.Control
-            type="text"
-            value={formData.author}
-            placeholder="Enter first name"
-            isInvalid={!!errors.author}
-            onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-          />
-          <Form.Control.Feedback type="invalid">{errors.author}</Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group className="mt-2">
           <Form.Label>Description</Form.Label>
           <Form.Control
-            type="text"
+            type="textarea"
             value={formData.description}
             placeholder="Enter description"
             isInvalid={!!errors.description}
@@ -114,75 +108,62 @@ function RecipeForm({ recipe }) {
         </Form.Group>
 
         <Form.Group className="mt-2">
+          <Form.Label>Author</Form.Label>
+          <Form.Control
+            as="select"
+            value={formData.author_id}
+            isInvalid={!!errors.author_id}
+            onChange={(e) => setFormData({ ...formData, author_id: e.target.value })}
+          >
+            <option value="">Select Author</option>
+              {authors.map((auth) => (
+                <option key={auth.id} value={auth.id.toString()}>
+                  {auth.name}
+                </option>
+            ))}
+          </Form.Control>
+          <Form.Control.Feedback type="invalid">{errors.author_id}</Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group className="mt-2">
           <Form.Label>Category</Form.Label>
           <Form.Control
-            type="text"
-            value={formData.category}
-            placeholder="Enter category name"
-            isInvalid={!!errors.category}
-            onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-          />
-          <Form.Control.Feedback type="invalid">{errors.category}</Form.Control.Feedback>
+            as="select"
+            value={formData.category_id}
+            isInvalid={!!errors.category_id}
+            onChange={(e) => setFormData({ ...formData, category_id: e.target.value })}
+          >
+            <option value="">Select Category</option>
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.id.toString()}>
+                  {cat.name}
+                </option>
+            ))}
+          </Form.Control>
+          <Form.Control.Feedback type="invalid">{errors.category_id}</Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group className="mt-2">
-          <Form.Label>Ingredient 1</Form.Label>
+          <Form.Label>Ingredients</Form.Label>
           <Form.Control
-            type="text"
-            value={formData.ingredient1}
-            placeholder="Enter ingredient"
-            isInvalid={!!errors.ingredient1}
-            onChange={(e) => setFormData({ ...formData, ingredient1: e.target.value })}
-          />
-          <Form.Control.Feedback type="invalid">{errors.ingredient1}</Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group className="mt-2">
-          <Form.Label>Ingredient 2</Form.Label>
-          <Form.Control
-            type="text"
-            value={formData.ingredient2}
-            placeholder="Enter ingredient"
-            isInvalid={!!errors.ingredient2}
-            onChange={(e) => setFormData({ ...formData, ingredient2: e.target.value })}
-          />
-          <Form.Control.Feedback type="invalid">{errors.ingredient2}</Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group className="mt-2">
-          <Form.Label>Ingredient 3</Form.Label>
-          <Form.Control
-            type="text"
-            value={formData.ingredient3}
-            placeholder="Enter ingredient"
-            isInvalid={!!errors.ingredient3}
-            onChange={(e) => setFormData({ ...formData, ingredient3: e.target.value })}
-          />
-          <Form.Control.Feedback type="invalid">{errors.ingredient3}</Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group className="mt-2">
-          <Form.Label>Ingredient 4</Form.Label>
-          <Form.Control
-            type="text"
-            value={formData.ingredient4}
-            placeholder="Enter ingredient"
-            isInvalid={!!errors.ingredient4}
-            onChange={(e) => setFormData({ ...formData, ingredient4: e.target.value })}
-          />
-          <Form.Control.Feedback type="invalid">{errors.ingredient4}</Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group className="mt-2">
-          <Form.Label>Ingredient 5</Form.Label>
-          <Form.Control
-            type="text"
-            value={formData.ingredient5}
-            placeholder="Enter ingredient"
-            isInvalid={!!errors.ingredient5}
-            onChange={(e) => setFormData({ ...formData, ingredient5: e.target.value })}
-          />
-          <Form.Control.Feedback type="invalid">{errors.ingredient5}</Form.Control.Feedback>
+            as="select"
+            multiple
+            value={formData.ingredient_ids}
+            isInvalid={!!errors.ingredient_ids}
+            onChange={(e) => {
+              const values = Array.from(e.target.selectedOptions, (opt) => opt.value);
+              setFormData({ ...formData, ingredient_ids: values });
+            }}
+          >
+            {ingredients.map((ing) => (
+              <option key={ing.id} value={ing.id.toString()}>
+                {ing.name}
+              </option>
+            ))}
+          </Form.Control>
+          <Form.Control.Feedback type="invalid">
+            {errors.ingredient_ids}
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group className="mt-4">

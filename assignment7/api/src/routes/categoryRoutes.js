@@ -7,6 +7,6 @@ router.get("/", controller.index);
 router.get("/:id", controller.show);
 router.post("/", [validateCategory], controller.create);
 router.put("/:id", [validateCategory], controller.update);
-router.put("/:id", controller.destroy);
+router.delete("/:id", controller.destroy);
 
 module.exports = router;
