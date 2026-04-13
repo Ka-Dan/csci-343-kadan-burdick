@@ -5,6 +5,12 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
+const cookies = require("cookie-parser");
+app.use(cookies());
+
+const authRoutes = require('./routes/authRoutes');
+app.use('/auth', authRoutes);
+
 const authorRoutes = require("./routes/authorRoutes");
 app.use("/authors", authorRoutes);
 

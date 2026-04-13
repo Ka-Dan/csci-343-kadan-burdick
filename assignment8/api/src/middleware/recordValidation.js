@@ -75,7 +75,41 @@ const validateCategory = async (req, res, next) => {
   }
 }
 
+validateUser = async (req, res, next) => {
+  const user = req.body;
+  const errors = {};
+
+  if (!user.email || user.email.length === 0) {
+    errors.email = "is required.";
+  }
+
+  if (user.email && user.email.length > 75) {
+    errors.email = "must be less than 50 characters.";
+  }
+
+  if (!user.password || user.password.length === 0) {
+    errors.password = "is required.";
+  }
+
+  if (user.password.length > 100) {
+    errors.password = "must be less than 100 characters";
+  }
+
+  const recordExists = (await pgClient.query("SELECT id FROM users WHERE email = $1", [user.email])).rowCount > 0;
+  if (recordExists) {
+    errors.email = "already taken.";
+  }
+
+  if (Object.keys(errors).length > 0) {
+    res.status(422).json({ errors });
+  }
+  else {
+    next();
+  }
+}
+
 module.exports = {
   validateRecipe,
   validateCategory,
+  validateUser
 };
