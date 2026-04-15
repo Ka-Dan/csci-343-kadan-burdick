@@ -42,34 +42,6 @@ function authenticate(req, res, next) {
   });
 }
 
-function authorizeAdmin(req, res, next) {
-  if (!res.locals.user.is_admin) {
-    return res.status(403).json({ error: 'Unauthorized.' });
-  }
-
-  next();
-}
-
-function authorizeRecipeOwner(req, res, next) {
-  const recipeId = req.params.id;
-  const userId = res.locals.user.id;
-
-  pgClient.query('SELECT id FROM recipes WHERE id = $1 AND user_id = $2', [recipeId, userId])
-    .then(results => {
-      if (results.rowCount > 0) {
-        next();
-      }
-      else {
-        res.status(403).json({ error: 'Unauthorized.' });
-      }
-    })
-    .catch(error => {
-      res.status(500).json({ error: `Error: ${error}.` });
-    });
-}
-
 module.exports = {
-  authenticate,
-  authorizeAdmin,
-  authorizeRecipeOwner
+  authenticate
 };

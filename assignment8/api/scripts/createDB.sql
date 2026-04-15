@@ -17,7 +17,6 @@ CREATE TABLE categories (
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  is_admin BOOLEAN DEFAULT FALSE,
   email VARCHAR(75) UNIQUE NOT NULL,
   password VARCHAR(100) NOT NULL
 );

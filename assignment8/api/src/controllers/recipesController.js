@@ -8,13 +8,15 @@ const index = (req, res) => {
       r.description,
       a.name AS author_name,
       c.name AS category_name,
-      json_agg(json_build_object('id', i.id, 'name', i.name)) AS ingredients
+      json_agg(json_build_object('id', i.id, 'name', i.name)) AS ingredients,
+      json_build_object('id', u.id, 'email', u.email) AS user
     FROM recipes r
     LEFT JOIN authors a ON r.author_id = a.id
+    LEFT JOIN users u ON u.id = r.user_id
     LEFT JOIN categories c ON r.category_id = c.id
     LEFT JOIN recipe_ingredients ri ON r.id = ri.recipe_id
     LEFT JOIN ingredients i ON ri.ingredient_id = i.id
-    GROUP BY r.id, a.name, c.name
+    GROUP BY r.id, a.name, c.name, u.id, u.email
     ORDER BY r.id ASC
   `;
 
@@ -30,19 +32,17 @@ const index = (req, res) => {
 const show = (req, res) => {
   const sql = `
     SELECT
-      r.id,
-      r.name,
-      r.description,
-      r.author_id,
-      r.category_id,
-      json_agg(
-        json_build_object('id', i.id, 'name', i.name)
-      ) AS ingredients
-    FROM recipes r
-    LEFT JOIN recipe_ingredients ri ON r.id = ri.recipe_id
-    LEFT JOIN ingredients i ON ri.ingredient_id = i.id
-    WHERE r.id = $1
-    GROUP BY r.id, r.name, r.description, r.author_id, r.category_id
+    r.id,
+    r.name,
+    r.description,
+    r.author_id,
+    r.category_id,
+    json_agg(json_build_object('id', i.id, 'name', i.name)) AS ingredients
+  FROM recipes r
+  LEFT JOIN recipe_ingredients ri ON r.id = ri.recipe_id
+  LEFT JOIN ingredients i ON ri.ingredient_id = i.id
+  WHERE r.id = $1
+  GROUP BY r.id
   `
   pgClient.query(sql, [req.params.id])
     .then(results => {
@@ -62,8 +62,8 @@ const create = async (req, res) => {
   try {
     await pgClient.query('BEGIN');
 
-    const recipeSql = "INSERT INTO recipes (name, description, author_id, category_id) VALUES ($1, $2, $3, $4) RETURNING id";
-    const recipeRes = await pgClient.query(recipeSql, [name, description, author_id, category_id]);
+    const recipeSql = "INSERT INTO recipes (name, description, author_id, category_id, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING id";
+    const recipeRes = await pgClient.query(recipeSql, [name, description, author_id, category_id, res.locals.user.id]);
     const newRecipeId = recipeRes.rows[0].id;
 
     if (ingredient_ids && ingredient_ids.length > 0) {
@@ -86,8 +86,8 @@ const update = async (req, res) => {
   try {
     await pgClient.query('BEGIN');
 
-    const updateSql = "UPDATE recipes SET name = $1, description = $2, author_id = $3, category_id = $4 WHERE id = $5";
-    await pgClient.query(updateSql, [name, description, author_id, category_id, recipeId]);
+    const updateSql = "UPDATE recipes SET name = $1, description = $2, author_id = $3, category_id = $4 WHERE id = $5 AND user_id = $6";
+    await pgClient.query(updateSql, [name, description, author_id, category_id, recipeId, res.locals.user.id]);
 
     await pgClient.query("DELETE FROM recipe_ingredients WHERE recipe_id = $1", [recipeId]);
 
@@ -105,7 +105,7 @@ const update = async (req, res) => {
 }
 
 const destroy = (req, res) => {
-  pgClient.query("DELETE FROM recipes WHERE id = $1", [req.params.id])
+  pgClient.query("DELETE FROM recipes WHERE id = $1 AND user_id = $2", [req.params.id, res.locals.user.id])
     .then(results => {
       if (results.rowCount > 0) {
         res.status(200).json({ message: "Recipe successfully deleted." });
