@@ -19,7 +19,7 @@ function register(req, res) {
           };
 
           res.cookie('jwt', token, {
-            maxAge: '1000',
+            maxAge: 1000000,
             httpOnly: true
           });
 
@@ -49,7 +49,7 @@ function login(req, res) {
           };
 
           res.cookie('jwt', token, {
-            maxAge: '1000000',
+            maxAge: 1000000,
             httpOnly: true
           });
 

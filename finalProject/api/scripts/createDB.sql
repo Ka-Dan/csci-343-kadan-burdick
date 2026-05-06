@@ -17,8 +17,9 @@ CREATE TABLE categories (
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  email VARCHAR(75) UNIQUE NOT NULL,
-  password VARCHAR(100) NOT NULL
+  email VARCHAR(100) UNIQUE NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  is_admin BOOLEAN DEFAULT FALSE
 );
 
 DROP TABLE IF EXISTS authors CASCADE;
@@ -46,6 +47,10 @@ CREATE TABLE recipe_ingredients (
 
 DO $$
   DECLARE
+    -- Users
+    admin_user_id INT;
+    admin_user_two_id INT;
+
     -- Authors
     kadan_author_id INT;
     mike_author_id INT;
@@ -66,6 +71,10 @@ DO $$
     parmesan_ingredient_id INT;
 
   BEGIN
+    -- Password: P@ssw0rd!
+    INSERT INTO users(email, is_admin, password) VALUES('admin@gmail.com', true, '$2a$12$Y5D7gtrXx8inzxq/143NNuu3oOv6Vb5g8Ug/n1ohJNgbnSQgebM2y') RETURNING id INTO admin_user_id;
+    INSERT INTO users(email, is_admin, password) VALUES('admintwo@gmail.com', true, '$2a$12$Y5D7gtrXx8inzxq/143NNuu3oOv6Vb5g8Ug/n1ohJNgbnSQgebM2y') RETURNING id INTO admin_user_two_id;
+
     INSERT INTO authors(name) VALUES('Kadan') RETURNING id INTO kadan_author_id;
     INSERT INTO authors(name) VALUES('Mike') RETURNING id INTO mike_author_id;
     INSERT INTO authors(name) VALUES('Randy') RETURNING id INTO randy_author_id;

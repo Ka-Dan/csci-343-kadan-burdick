@@ -57,17 +57,22 @@ function ApplicationLayout() {
     <div id="background" className="min-vh-100">
       <Container id="container" className="min-vh-100 d-flex flex-column">
         <div id="header">
-          <div className="py-5 px-3 bg-light">
+          <div className="py-5 px-3">
             <h1>kadan's Recipe App</h1>
             <p>Sort of...</p>
           </div>
           <Navbar className="justify-content-between bg-secondary">
-            <Nav className="bg-secondary">
+            <Nav>
               <Nav.Link as={NavLink} to="/">Home</Nav.Link>
               <Nav.Link as={NavLink} to="/recipes">Recipes</Nav.Link>
-              <Nav.Link as={NavLink} to="/categories">Categories</Nav.Link>
+              {auth?.isAuthenticated ?
+                <Nav.Link as={NavLink} to="/categories">Categories</Nav.Link>
+                :
+                <>
+                </>
+              }
             </Nav>
-            <Nav className="bg-secondary justify-content-end">
+            <Nav className="justify-content-end">
               {auth?.isAuthenticated ?
                 <Nav.Link onClick={handleLogoutClick}>Log out</Nav.Link>
                 :

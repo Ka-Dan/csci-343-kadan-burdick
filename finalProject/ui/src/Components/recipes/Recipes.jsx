@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Alert, Container, Spinner, Button, Row, Col } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 import Recipe from "./Recipe";
@@ -10,6 +11,7 @@ function Recipes() {
   const [recipes, setrecipes] = useState([]);
   const [alert, setAlert] = useState({ message: "", variant: "" });
   const [isLoading, setIsLoading] = useState(true);
+  const { isAuthenticated, isAdmin } = useSelector(state => state.auth);
 
   useEffect(() => {
     axios.get("/api/recipes")
@@ -54,9 +56,18 @@ function Recipes() {
 
       <h3>recipes</h3>
 
-      <div>
-        <Button as={Link} to="/recipes/new" className="mb-3">Add recipe</Button>
-      </div>
+      <>
+      {isAuthenticated && isAdmin ?
+        <div>
+          <Button as={Link} to="/recipes/new" className="mb-3">Add recipe</Button>
+        </div>
+        :
+        <>
+        </>
+      }
+      </>
+
+
 
       {isLoading
         ?

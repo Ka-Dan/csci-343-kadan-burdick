@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Alert, Container, Spinner, Button, Table } from "react-bootstrap";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 import Category from "./category";
 
@@ -10,6 +11,7 @@ function Categories() {
   const [categories, setCategories] = useState([]);
   const [alert, setAlert] = useState({ message: "", variant: "" });
   const [isLoading, setIsLoading] = useState(true);
+  const { isAuthenticated, isAdmin } = useSelector(state => state.auth);
 
   useEffect(() => {
     axios.get("/api/categories")
@@ -54,9 +56,16 @@ function Categories() {
 
       <h3>categories</h3>
 
+      {isAuthenticated && isAdmin
+      ?
       <div>
         <Button as={Link} to="/categories/new" className="mb-3">Add category</Button>
       </div>
+      :
+      <>
+      </>
+      }
+
 
       {isLoading
         ?
